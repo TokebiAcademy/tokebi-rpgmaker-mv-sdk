@@ -155,7 +155,7 @@
                 payload: flatPayload,
                 gameId: this.gameId,
                 playerId: this.playerId,
-                platform: 'rpgmaker',
+                platform: 'rpgmaker-mv',
                 environment: ENVIRONMENT
             };
             
@@ -280,7 +280,7 @@
             
             var registrationData = JSON.stringify({
                 gameName: this.gameName,
-                platform: 'rpgmaker',
+                platform: 'rpgmaker-mv',
                 rpgmakerVersion: 'MV',
                 playerCount: 1
             });
