@@ -49,10 +49,37 @@
     var DEBUG_MODE = parameters['debugMode'] === 'true';
     var ENDPOINT = 'https://tokebi-api.vercel.app';
     
-    // Auto-detect environment - NO developer input needed!
-    var ENVIRONMENT = (window.location.protocol === 'file:' || 
-                      window.location.hostname === 'localhost' ||
-                      window.location.hostname === '127.0.0.1') ? 'development' : 'production';
+    // ENHANCED environment detection - catches all development scenarios
+    var ENVIRONMENT = (function() {
+        // File protocol (RPG Maker playtest mode)
+        if (window.location.protocol === 'file:') return 'development';
+        
+        // Standard localhost variations
+        var hostname = window.location.hostname;
+        if (hostname === 'localhost' || 
+            hostname === '127.0.0.1' || 
+            hostname === '' || 
+            hostname === '0.0.0.0') return 'development';
+        
+        // Local network addresses
+        if (hostname.startsWith('192.168.') || 
+            hostname.startsWith('10.') || 
+            hostname.startsWith('172.')) return 'development';
+        
+        // Common development ports
+        var port = window.location.port;
+        if (port && (port === '3000' || port === '8000' || port === '8080' || 
+                     port === '5000' || port === '9000' || port === '4200')) {
+            return 'development';
+        }
+        
+        // NW.js (RPG Maker desktop) without real domain
+        if ((typeof nw !== 'undefined' || typeof require !== 'undefined') && 
+            !hostname.includes('.')) return 'development';
+        
+        // If no clear indicators, assume production
+        return 'production';
+    })();
     
     if (DEBUG_MODE) {
         console.log('[Tokebi] Environment detected: ' + ENVIRONMENT);
