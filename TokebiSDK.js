@@ -4,9 +4,9 @@
 
 /*:
  * @target MV
- * @plugindesc [v1.0.0] TokebiSDK
+ * @plugindesc [v1.0.1] TokebiSDK
  * @author Tokebi Academy
- * @version 1.0.0
+ * @version 1.0.1
  * @description Real-time game analytics for RPG Maker
  * 
  * @param apiKey
