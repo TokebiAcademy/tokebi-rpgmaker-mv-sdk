@@ -40,7 +40,7 @@
     // Try multiple ways to get parameters
     var parameters = PluginManager.parameters('TokebiSDK') || 
                     PluginManager.parameters('Tokebi Analytics SDK') ||
-                    PluginManager.parameters('[v1.0.0] TokebiSDK') || {};
+                    PluginManager.parameters('[v1.0.1] TokebiSDK') || {};
     
     // Get values
     var API_KEY = parameters['apiKey'] || '';
